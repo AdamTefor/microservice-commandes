@@ -1,0 +1,176 @@
+{
+  "version": "1.0",
+  "records": [
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/domain/Commande.java",
+      "timestamp": 1766673126740,
+      "startOffset": 0,
+      "endOffset": 73,
+      "codeContent": "package ma.emsi.microservicecommandes.domain;\n\npublic class Commande {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/domain/Commande.java",
+      "timestamp": 1766673133085,
+      "startOffset": 47,
+      "endOffset": 1423,
+      "codeContent": "import jakarta.persistence.*;\nimport java.math.BigDecimal;\nimport java.time.LocalDate;\n\n@Entity\n@Table(name \u003d \"commande\")\npublic class Commande {\n\n    @Id\n    @GeneratedValue(strategy \u003d GenerationType.IDENTITY)\n    private Long id;\n\n    @Column(nullable \u003d false)\n    private String description;\n\n    @Column(nullable \u003d false)\n    private Integer quantite;\n\n    @Column(nullable \u003d false)\n    private LocalDate date;\n\n    @Column(nullable \u003d false, precision \u003d 19, scale \u003d 2)\n    private BigDecimal montant;\n\n    public Commande() {\n    }\n\n    public Commande(String description, Integer quantite, LocalDate date, BigDecimal montant) {\n        this.description \u003d description;\n        this.quantite \u003d quantite;\n        this.date \u003d date;\n        this.montant \u003d montant;\n    }\n\n    public Long getId() { return id; }\n    public String getDescription() { return description; }\n    public Integer getQuantite() { return quantite; }\n    public LocalDate getDate() { return date; }\n    public BigDecimal getMontant() { return montant; }\n\n    public void setId(Long id) { this.id \u003d id; }\n    public void setDescription(String description) { this.description \u003d description; }\n    public void setQuantite(Integer quantite) { this.quantite \u003d quantite; }\n    public void setDate(LocalDate date) { this.date \u003d date; }\n    public void setMontant(BigDecimal montant) { this.montant \u003d montant; }",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 45
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/repository/CommandeRepository.java",
+      "timestamp": 1766673146040,
+      "startOffset": 0,
+      "endOffset": 87,
+      "codeContent": "package ma.emsi.microservicecommandes.repository;\n\npublic class CommandeRepository {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/repository/CommandeRepository.java",
+      "timestamp": 1766673151589,
+      "startOffset": 51,
+      "endOffset": 303,
+      "codeContent": "import ma.emsi.microservicecommandes.domain.Commande;\nimport org.springframework.data.jpa.repository.JpaRepository;\nimport org.springframework.stereotype.Repository;\n\n@Repository\npublic interface CommandeRepository extends JpaRepository\u003cCommande, Long\u003e",
+      "aiProbability": 70,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 6
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/service/CommandeService.java",
+      "timestamp": 1766673338939,
+      "startOffset": 0,
+      "endOffset": 81,
+      "codeContent": "package ma.emsi.microservicecommandes.service;\n\npublic class CommandeService {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/service/CommandeService.java",
+      "timestamp": 1766673344716,
+      "startOffset": 48,
+      "endOffset": 1442,
+      "codeContent": "import ma.emsi.microservicecommandes.domain.Commande;\nimport ma.emsi.microservicecommandes.repository.CommandeRepository;\nimport org.springframework.stereotype.Service;\n\nimport java.util.List;\n\n@Service\npublic class CommandeService {\n\n    private final CommandeRepository commandeRepository;\n\n    public CommandeService(CommandeRepository commandeRepository) {\n        this.commandeRepository \u003d commandeRepository;\n    }\n\n    public Commande create(Commande commande) {\n        return commandeRepository.save(commande);\n    }\n\n    public List\u003cCommande\u003e findAll() {\n        return commandeRepository.findAll();\n    }\n\n    public Commande findById(Long id) {\n        return commandeRepository.findById(id)\n                .orElseThrow(() -\u003e new RuntimeException(\"Commande introuvable avec id \u003d \" + id));\n    }\n\n    public Commande update(Long id, Commande newData) {\n        Commande existing \u003d findById(id);\n        existing.setDescription(newData.getDescription());\n        existing.setQuantite(newData.getQuantite());\n        existing.setDate(newData.getDate());\n        existing.setMontant(newData.getMontant());\n        return commandeRepository.save(existing);\n    }\n\n    public void delete(Long id) {\n        if (!commandeRepository.existsById(id)) {\n            throw new RuntimeException(\"Commande introuvable avec id \u003d \" + id);\n        }\n        commandeRepository.deleteById(id);\n    }",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 43
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/controller/CommandeController.java",
+      "timestamp": 1766673369059,
+      "startOffset": 0,
+      "endOffset": 87,
+      "codeContent": "package ma.emsi.microservicecommandes.controller;\n\npublic class CommandeController {\n}\n",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/controller/CommandeController.java",
+      "timestamp": 1766673375587,
+      "startOffset": 51,
+      "endOffset": 1356,
+      "codeContent": "import ma.emsi.microservicecommandes.domain.Commande;\nimport ma.emsi.microservicecommandes.service.CommandeService;\nimport org.springframework.http.HttpStatus;\nimport org.springframework.web.bind.annotation.*;\n\nimport java.util.List;\n\n@RestController\n@RequestMapping(\"/api/commandes\")\npublic class CommandeController {\n\n    private final CommandeService commandeService;\n\n    public CommandeController(CommandeService commandeService) {\n        this.commandeService \u003d commandeService;\n    }\n\n    // CREATE\n    @PostMapping\n    @ResponseStatus(HttpStatus.CREATED)\n    public Commande create(@RequestBody Commande commande) {\n        return commandeService.create(commande);\n    }\n\n    // READ ALL\n    @GetMapping\n    public List\u003cCommande\u003e findAll() {\n        return commandeService.findAll();\n    }\n\n    // READ BY ID\n    @GetMapping(\"/{id}\")\n    public Commande findById(@PathVariable Long id) {\n        return commandeService.findById(id);\n    }\n\n    // UPDATE\n    @PutMapping(\"/{id}\")\n    public Commande update(@PathVariable Long id, @RequestBody Commande commande) {\n        return commandeService.update(id, commande);\n    }\n\n    // DELETE\n    @DeleteMapping(\"/{id}\")\n    @ResponseStatus(HttpStatus.NO_CONTENT)\n    public void delete(@PathVariable Long id) {\n        commandeService.delete(id);\n    }",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 48
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/repository/CommandeRepository.java",
+      "timestamp": 1766674425898,
+      "startOffset": 310,
+      "endOffset": 357,
+      "codeContent": "List\u003cCommande\u003e findByDateAfter(LocalDate date);",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 1
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/repository/CommandeRepository.java",
+      "timestamp": 1766674430252,
+      "startOffset": 216,
+      "endOffset": 243,
+      "codeContent": "import java.time.LocalDate;",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 1
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/service/CommandeService.java",
+      "timestamp": 1766674549120,
+      "startOffset": 345,
+      "endOffset": 421,
+      "codeContent": " @Value(\"${mes-config-ms.commandes-last:10}\")\n    private int commandesLast;",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 2
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/service/CommandeService.java",
+      "timestamp": 1766674553994,
+      "startOffset": 170,
+      "endOffset": 228,
+      "codeContent": "import org.springframework.beans.factory.annotation.Value;",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 1
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/controller/CommandeController.java",
+      "timestamp": 1766674581386,
+      "startOffset": 1007,
+      "endOffset": 1109,
+      "codeContent": "@GetMapping(\"/last\")\npublic List\u003cCommande\u003e last() {\n    return commandeService.findLastCommandes();\n}\n",
+      "aiProbability": 95,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 5
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/microservice-commandes/src/main/java/ma/emsi/microservicecommandes/service/CommandeService.java",
+      "timestamp": 1766674618465,
+      "startOffset": 277,
+      "endOffset": 304,
+      "codeContent": "import java.time.LocalDate;",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 1
+    },
+    {
+      "filePath": "C:/Users/USER/Desktop/config-server/src/main/java/ma/emsi/configserver/ConfigServerApplication.java",
+      "timestamp": 1766676372411,
+      "startOffset": 151,
+      "endOffset": 419,
+      "codeContent": "import org.springframework.cloud.config.server.EnableConfigServer;\n\n@EnableConfigServer\n@SpringBootApplication\npublic class ConfigServerApplication {\n    public static void main(String[] args) {\n        SpringApplication.run(ConfigServerApplication.class, args);\n    }",
+      "aiProbability": 90,
+      "aiTool": "AI Assistant",
+      "detectionMethod": "REALTIME_SPEED_ANALYSIS",
+      "lineCount": 8
+    }
+  ],
+  "toolStats": {
+    "AI Assistant": {
+      "usageCount": 15,
+      "totalLines": 181
+    }
+  }
+}
